@@ -1,0 +1,18 @@
+
+Pod::Spec.new do |s|
+  s.name             = "EZSwiftExtensions_Fix"
+  s.version          = "1.0.0"
+  s.license          = 'MIT'
+  s.summary          = "对EZSwiftExtensions修复支持5.0"
+  s.description      = <<-DESC
+                       A easy use extension of UIView.
+                       * Markdown format.
+                       * Don't worry about the indent, we strip it!
+                       DESC
+  s.authors          = "lidengke"
+  s.homepage 	     = "https://github.com/DK-L-iOS/EZSwiftExtensions_Fix"
+  s.source           = { :git => "https://github.com/DK-L-iOS/EZSwiftExtensions_Fix.git", :tag => s.version.to_s }
+  s.platform         = :ios, '7.0'
+  s.requires_arc     = true
+  s.source_files     = ''DKUIViewExtensions/*.swift'
+end
