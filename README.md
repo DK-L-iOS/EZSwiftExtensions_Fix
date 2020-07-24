@@ -1,0 +1,2 @@
+# EZSwiftExtensions_Fix
+EZSwiftExtensions支持Swift5.0
