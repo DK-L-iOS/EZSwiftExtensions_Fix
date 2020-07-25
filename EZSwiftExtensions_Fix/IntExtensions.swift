@@ -29,7 +29,7 @@ extension Int {
     public var toFloat: Float { return Float(self) }
 
     /// EZSE: Converts integer value to CGFloat.
-    public var toCGFloat:CGFloat { return CGFloat(self) }
+    public var toCGFloat: CGFloat { return CGFloat(self) }
 
     /// EZSE: Converts integer value to String.
     public var toString: String { return String(self) }
@@ -49,8 +49,6 @@ extension Int {
             return 1
         } else if Int(fabs(Double(self))) <= LONG_MAX {
             return Int(log10(fabs(Double(self)))) + 1
-        } else {
-            return -1; //out of bound
         }
     }
     

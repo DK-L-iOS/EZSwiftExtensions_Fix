@@ -16,8 +16,6 @@
     import UIKit
 #endif
 
-import Foundation
-
 extension String {
     /// EZSE: Init string with a base64 encoded string
     init ? (base64: String) {
@@ -192,14 +190,6 @@ extension String {
         result.replaceSubrange(self.index(startIndex, offsetBy: from)..<self.index(startIndex, offsetBy: to),
                                with: String(self[self.index(startIndex, offsetBy: from)..<self.index(startIndex, offsetBy: to)]).lowercased())
         return result
-    }
-    
-    /// EZSE: Counts whitespace & new lines
-    @available(*, deprecated: 1.6, renamed: "isBlank")
-    public func isOnlyEmptySpacesAndNewLineCharacters() -> Bool {
-        let characterSet = CharacterSet.whitespacesAndNewlines
-        let newText = self.trimmingCharacters(in: characterSet)
-        return newText.isEmpty
     }
     
     /// EZSE: Checks if string is empty or consists only of whitespace and newline characters

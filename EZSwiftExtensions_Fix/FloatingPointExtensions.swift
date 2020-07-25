@@ -38,7 +38,7 @@ extension FloatingPoint {
     
     /// EZSE: Returns a random floating point number between 0.0 and 1.0, inclusive.
     public static func random() -> Float {
-        return Float(arc4random()) / 0xFFFFFFFF
+        return Float(arc4random()) / 4294967296.0
     }
     
     /// EZSE: Returns a random floating point number in the range min...max, inclusive.

@@ -79,7 +79,7 @@ public struct ez {
 
     /// EZSE: Returns true if its simulator and not a device //TODO: Add to readme
     public static var isSimulator: Bool {
-    #if (arch(i386) || arch(x86_64)) && os(iOS)
+        #if targetEnvironment(simulator)
         return true
     #else
         return false
@@ -88,7 +88,7 @@ public struct ez {
 
     /// EZSE: Returns true if its on a device and not a simulator //TODO: Add to readme
     public static var isDevice: Bool {
-    #if (arch(i386) || arch(x86_64)) && os(iOS)
+        #if targetEnvironment(simulator)
         return false
     #else
         return true
@@ -103,95 +103,6 @@ public struct ez {
     }
     #endif
 
-    #if os(iOS) || os(tvOS)
-
-    /// EZSE: Returns the top ViewController
-    public static var topMostVC: UIViewController? {
-        let topVC = UIApplication.topViewController()
-        if topVC == nil {
-            print("EZSwiftExtensions Error: You don't have any views set. You may be calling them in viewDidLoad. Try viewDidAppear instead.")
-        }
-        return topVC
-    }
-
-    #if os(iOS)
-
-    /// EZSE: Returns current screen orientation
-    public static var screenOrientation: UIInterfaceOrientation {
-        return UIApplication.shared.statusBarOrientation
-    }
-
-    #endif
-
-    /// EZSwiftExtensions
-    public static var horizontalSizeClass: UIUserInterfaceSizeClass {
-        return self.topMostVC?.traitCollection.horizontalSizeClass ?? UIUserInterfaceSizeClass.unspecified
-    }
-
-    /// EZSwiftExtensions
-    public static var verticalSizeClass: UIUserInterfaceSizeClass {
-        return self.topMostVC?.traitCollection.verticalSizeClass ?? UIUserInterfaceSizeClass.unspecified
-    }
-    
-    #endif
-    
-    #if os(iOS) || os(tvOS)
-
-    /// EZSE: Returns screen width
-    public static var screenWidth: CGFloat {
-
-        #if os(iOS)
-
-        if screenOrientation.isPortrait {
-            return UIScreen.main.bounds.size.width
-        } else {
-            return UIScreen.main.bounds.size.height
-        }
-
-        #elseif os(tvOS)
-
-        return UIScreen.main.bounds.size.width
-
-        #endif
-    }
-
-    /// EZSE: Returns screen height
-    public static var screenHeight: CGFloat {
-
-        #if os(iOS)
-
-        if screenOrientation.isPortrait {
-            return UIScreen.main.bounds.size.height
-        } else {
-            return UIScreen.main.bounds.size.width
-        }
-
-        #elseif os(tvOS)
-
-            return UIScreen.main.bounds.size.height
-
-        #endif
-    }
-    
-    #endif
-
-    #if os(iOS)
-
-    /// EZSE: Returns StatusBar height
-    public static var screenStatusBarHeight: CGFloat {
-        return UIApplication.shared.statusBarFrame.height
-    }
-
-    /// EZSE: Return screen's height without StatusBar
-    public static var screenHeightWithoutStatusBar: CGFloat {
-        if screenOrientation.isPortrait {
-            return UIScreen.main.bounds.size.height - screenStatusBarHeight
-        } else {
-            return UIScreen.main.bounds.size.width - screenStatusBarHeight
-        }
-    }
-
-    #endif
 
     /// EZSE: Returns the locale country code. An example value might be "ES". //TODO: Add to readme
     public static var currentRegion: String? {
@@ -263,43 +174,6 @@ public struct ez {
         let timer = CFRunLoopTimerCreateWithHandler(kCFAllocatorDefault, fireDate, seconds, 0, 0, handler)
         CFRunLoopAddTimer(CFRunLoopGetCurrent(), timer, CFRunLoopMode.commonModes)
         return timer!
-    }
-
-    /// EZSE: Gobal main queue
-    @available(*, deprecated: 1.7, renamed: "DispatchQueue.main")
-    public var globalMainQueue: DispatchQueue {
-        return DispatchQueue.main
-    }
-
-    /// EZSE: Gobal queue with user interactive priority
-    @available(*, deprecated: 1.7, renamed: "DispatchQueue.main")
-
-    public var globalUserInteractiveQueue: DispatchQueue {
-        return DispatchQueue.global(qos: .userInteractive)
-    }
-
-    /// EZSE: Gobal queue with user initiated priority
-    @available(*, deprecated: 1.7, renamed: "DispatchQueue.global()")
-    public var globalUserInitiatedQueue: DispatchQueue {
-        return DispatchQueue.global(qos: .userInitiated)
-    }
-
-    /// EZSE: Gobal queue with utility priority
-    @available(*, deprecated: 1.7, renamed: "DispatchQueue.global()")
-    public var globalUtilityQueue: DispatchQueue {
-        return DispatchQueue.global(qos: .utility)
-    }
-
-    /// EZSE: Gobal queue with background priority
-    @available(*, deprecated: 1.7, renamed: "DispatchQueue.global()")
-    public var globalBackgroundQueue: DispatchQueue {
-        return DispatchQueue.global(qos: .background)
-    }
-
-    /// EZSE: Gobal queue with default priority
-    @available(*, deprecated: 1.7, renamed: "DispatchQueue.global()")
-    public var globalQueue: DispatchQueue {
-        return DispatchQueue.global(qos: .default)
     }
 
     // MARK: - DownloadTask

@@ -92,17 +92,6 @@ extension UIFont {
     public class func AvenirNextRegular(size: CGFloat) -> UIFont {
         return Font(.AvenirNext, type: .Regular, size: size)
     }
-
-    // MARK: Deprecated
-
-    /// EZSwiftExtensions
-    @available(*, deprecated: 1.8)
-    public class func PrintFontFamily(_ font: FontName) {
-        let arr = UIFont.fontNames(forFamilyName: font.rawValue)
-        for name in arr {
-            print(name)
-        }
-    }
 }
 
 #endif

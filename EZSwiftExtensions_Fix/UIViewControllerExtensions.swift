@@ -279,8 +279,6 @@ extension UIViewController {
     }
     
     #if os(iOS)
-
-    @available(*, deprecated: 1.9)
     public func hideKeyboardWhenTappedAroundAndCancelsTouchesInView() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
